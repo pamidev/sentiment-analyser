@@ -1,6 +1,6 @@
 # Sentiment Analyser
 > This Python program is helpful in analyzing movie reviews because it can automatically determine the sentiment 
-> of new comments and reviews based on its database of 25 000 short movie reviews previously rated as positive
+> of new comments and reviews based on its database of 42 928 short movie reviews previously rated as positive
 > and negative.
 
 
@@ -17,7 +17,7 @@
 
 ## General Information
 The purpose of the program is to use a _glob_ module from standard Python's library and to analyze a dataset 
-of movie reviews. The training reference data consists of 12 500 positive and 12 500 negative film reviews.
+of movie reviews. The training reference data consists of 21 467 positive and 21 461 negative film reviews.
 
 The program compute how many positive reviews and how many negative reviews from the database each word 
 of the user's review appears in and finally calculates the total user's review sentiment.
