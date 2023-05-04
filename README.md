@@ -52,14 +52,14 @@ There is no need to install anything extra.
 
 You can check your Python version by typing in terminal:
 ```bash
-python --version
+$ python --version
 ```
 
 
 ## Usage
 How does one go about using it? It's simple. :-) Type in terminal:\
 ```bash
-python sentiment-analyser.py
+$ python sentiment-analyser.py
 ```
 
 
