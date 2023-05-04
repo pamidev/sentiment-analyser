@@ -57,7 +57,7 @@ $ python --version
 
 
 ## Usage
-How does one go about using it? It's simple. :-) Type in terminal:\
+How does one go about using it? It's simple. :-) Type in terminal:
 ```bash
 $ python sentiment-analyser.py
 ```
