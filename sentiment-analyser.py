@@ -3,8 +3,8 @@ from glob import glob
 POSITIVE_TRAINING_FILES = glob(r".\data\pos\*.txt")
 NEGATIVE_TRAINING_FILES = glob(r".\data\neg\*.txt")
 CHARACTERS_TO_REMOVE = ("<br>", "<br/>", "<br />", ".", ",", "?", "!",
-                   "-", '"', "", "(", ")", ":", ";", "-", "+",
-                   "=", "/", "§", "*", "¡", "¦", "\\x91", "\\x97")
+                        "-", '"', "", "(", ")", ":", ";", "-", "+",
+                        "=", "/", "§", "*", "¡", "¦", "\\x91", "\\x97")
 POSITIVE_WORDS_LISTS = []
 NEGATIVE_WORDS_LISTS = []
 
