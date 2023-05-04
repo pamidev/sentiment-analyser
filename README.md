@@ -1,6 +1,6 @@
 # Sentiment Analyser
 > This Python program is helpful in analyzing movie reviews because it can automatically determine the sentiment 
-> of new comments and reviews based on its database of 25,000 short movie reviews previously rated positive
+> of new comments and reviews based on its database of 25,000 short movie reviews previously rated as positive
 > and negative.
 
 
