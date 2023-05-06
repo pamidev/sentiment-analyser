@@ -45,10 +45,12 @@ Example with negative comment:
 
 ## Setup
 I assume You know how to cloning this repository. If not, I refer you to 
-[this publication](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+[this publication](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
 
 Python version should not matter here, although the program was written and tested on version 3.11.3. 
 There is no need to install anything extra.
+
+> If You don't have any Python version, download and install [from here](https://www.python.org/).
 
 You can check your Python version by typing in terminal:
 ```bash
