@@ -29,6 +29,7 @@ Thanks to this project, I learned how to use Python programing language and its 
 - [Python](https://www.python.org/) - version 3.11.3
 - from Python's standard library:
   - [_glob_](https://docs.python.org/3/library/glob.html) module
+- [PyTest](https://pytest.org/) - version 7.3.1
 
 
 ## Features
@@ -48,7 +49,7 @@ I assume You know how to cloning this repository. If not, I refer you to
 [this publication](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
 
 Python version should not matter here, although the program was written and tested on version 3.11.3. 
-There is no need to install anything extra.
+There is no need to install anything extra, except _PyTest_ package for testing.
 
 > If You don't have any Python version, download and install [from here](https://www.python.org/).
 
@@ -57,11 +58,31 @@ You can check your Python version by typing in terminal:
 $ python --version
 ```
 
+But if You want to test my program, You need to create and activate _virtual environment_ like this:
+```bash
+$ python -m venv .venv
+$ cd .venv\Scripts
+$ activate
+$ cd ..
+$ cd ..
+```
+and install _pytest_ package with dependencies in the previously created _virtual environment_:
+``` bash
+$ pip install -r tests_requirements.txt
+```
+or
+``` bash
+$ pip install -U pytest
+```
 
 ## Usage
 How does one go about using it? It's simple. :-) Type in terminal:
 ```bash
-$ python sentiment-analyser.py
+$ python sentiment_analyser.py
+```
+or for testing (check [Setup](#setup) first):
+```bash
+$ pytest tests_password_generator.py
 ```
 
 
@@ -72,11 +93,11 @@ Room for improvement:
 - ~~Code refactoring~~ **DONE!**
 
 To do:
-- Using _click_ module
-- Tests using _PyTest_
+- Using _click_ package
+- ~~Tests using _PyTest_~~ **DONE!**
 
 
 ## Acknowledgements
 - This program was inspired by one of exercises of
-[the Practical Python](https://praktycznypython.pl/) educational program
-- Many thanks to [Krzysztof Mędrela](https://medrela.com/)
+[the Practical Python](https://praktycznypython.pl/) educational program.
+- Many thanks to [Krzysztof Mędrela](https://medrela.com/).
