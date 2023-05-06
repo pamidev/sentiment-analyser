@@ -1,71 +1,76 @@
 from glob import glob
 
-POSITIVE_TRAINING_FILES = glob(r".\data\pos\*.txt")
-NEGATIVE_TRAINING_FILES = glob(r".\data\neg\*.txt")
-CHARACTERS_TO_REMOVE = ("<br>", "<br/>", "<br />", ".", ",", "?", "!",
-                        "-", '"', "", "(", ")", ":", ";", "-", "+",
-                        "=", "/", "§", "*", "¡", "¦", "\\x91", "\\x97")
+POSITIVE_PATTERN = r".\data\pos\*.txt"
+NEGATIVE_PATTERN = r".\data\neg\*.txt"
+PUNCTUATIONS = ("<br>", "<br/>", "<br />", ".", ",", "?", "!",
+                "-", '"', "", "(", ")", ":", ";", "-", "+",
+                "=", "/", "§", "*", "¡", "¦", "\\x91", "\\x97")
 POSITIVE_WORDS_DICT = {}
 NEGATIVE_WORDS_DICT = {}
 
-for positive_file in POSITIVE_TRAINING_FILES:
-    with open(positive_file, 'r') as pos_stream:
-        pos_content = pos_stream.read()
-        pos_content = pos_content.lower()
 
-    for char in CHARACTERS_TO_REMOVE:
-        pos_content = pos_content.replace(char, " ")
+def preprocess_review(review):
+    review = review.lower()
+    for punc in PUNCTUATIONS:
+        review = review.replace(punc, " ")
+    words = review.split()
+    return words
 
-    POSITIVE_WORDS_SET = set(pos_content.split())
 
-    for pos_word in POSITIVE_WORDS_SET:
-        POSITIVE_WORDS_DICT[pos_word] = POSITIVE_WORDS_DICT.get(pos_word, 0) + 1
+def compute_words(path_pattern):
+    words_count = {}
+    files = glob(path_pattern)
+    for file in files:
+        with open(file) as stream:
+            content = stream.read()
+            content = content.lower()
+        words = set(preprocess_review(content))
+        for word in set(words):
+            words_count[word] = words_count.get(word, 0) + 1
+    return words_count
 
-for negative_file in NEGATIVE_TRAINING_FILES:
-    with open(negative_file, 'r') as neg_stream:
-        neg_content = neg_stream.read()
-        neg_content = neg_content.lower()
 
-    for char in CHARACTERS_TO_REMOVE:
-        neg_content = neg_content.replace(char, " ")
+def get_review():
+    comment = input("Enter review: ")
+    words = preprocess_review(comment)
+    return words
 
-    NEGATIVE_WORDS_SET = set(neg_content.split())
 
-    for neg_word in NEGATIVE_WORDS_SET:
-        NEGATIVE_WORDS_DICT[neg_word] = NEGATIVE_WORDS_DICT.get(neg_word, 0) + 1
+def compute_sentiment(words, words_count_pos, words_count_neg, debug=False):
+    sentence_sentiment = 0
+    for word in words:
+        positive = words_count_pos.get(word, 0)
+        negative = words_count_neg.get(word, 0)
+        all_ = positive + negative
+        if all_ == 0:
+            word_sentiment = 0
+        else:
+            word_sentiment = (positive - negative) / all_
+        if debug:
+            print(f"{word} --> sentiment = {word_sentiment}")
+        sentence_sentiment += word_sentiment
+    sentence_sentiment /= len(words)
+    return sentence_sentiment
 
-comment = input("Enter movie review, please: ")
-print()
 
-for char in CHARACTERS_TO_REMOVE:
-    comment = comment.lower().replace(char, " ")
-
-words = comment.split()
-positive = 0
-negative = 0
-word_sentiment_sum = 0
-
-for word in words:
-    positive = POSITIVE_WORDS_DICT.get(word, 0)
-    negative = NEGATIVE_WORDS_DICT.get(word, 0)
-    all_ = positive + negative
-
-    if all_ != 0:
-        word_sentiment = (positive - negative) / all_
+def print_sentiment(sentiment):
+    if sentiment > 0:
+        label = "positive"
+    elif sentiment < 0:
+        label = "negative"
     else:
-        word_sentiment = 0
-    word_sentiment_sum += word_sentiment
+        label = "neutral"
+    print("------------------------------------------------------------")
+    print(f"Entered review is {label}. Sentiment = {sentiment}")
 
-    print(f"{word} --> sentiment = {word_sentiment}")
 
-comment_sentiment = word_sentiment_sum / len(words)
+def main():
+    words = get_review()
+    words_count_pos = compute_words(POSITIVE_PATTERN)
+    words_count_neg = compute_words(NEGATIVE_PATTERN)
+    review_sentiment = compute_sentiment(words, words_count_pos, words_count_neg, debug=True)
+    print_sentiment(review_sentiment)
 
-if comment_sentiment > 0:
-    sentiment = "positive"
-elif comment_sentiment < 0:
-    sentiment = "negative"
-else:
-    sentiment = "neutral"
 
-print()
-print(f"Entered review is {sentiment}. Sentiment = {comment_sentiment}")
+if __name__ == '__main__':
+    main()
