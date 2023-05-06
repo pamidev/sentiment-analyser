@@ -49,7 +49,10 @@ def compute_sentiment(words, words_count_pos, words_count_neg, debug=False):
         if debug:
             print(f"{word} --> sentiment = {word_sentiment}")
         sentence_sentiment += word_sentiment
-    sentence_sentiment /= len(words)
+    if len(words) > 0:
+        sentence_sentiment /= len(words)
+    else:
+        sentence_sentiment = 0
     return sentence_sentiment
 
 
