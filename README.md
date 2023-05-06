@@ -65,9 +65,9 @@ $ python sentiment-analyser.py
 
 ## Room for Improvement
 Room for improvement:
-- Improving word counts in reference data
-- Improving review sentiment analysis
-- Code refactor
+- ~~Improving words counts in reference data~~ **DONE!**
+- ~~Improving review sentiment analysis~~ **DONE!**
+- ~~Code refactoring~~ **DONE!**
 
 To do:
 - Using _click_ module
